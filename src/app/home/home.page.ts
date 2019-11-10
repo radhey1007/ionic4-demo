@@ -1,3 +1,4 @@
+import { Events } from '@ionic/angular';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,6 +8,18 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  menuID:number= 0;
+
+  constructor(public events: Events,
+    ) {
+    this.events.subscribe('menuId', menuId => {
+      console.log('menu id in home page' + menuId);
+      this.menuID = menuId;
+    },err=>{
+      //this.menuID = 0;
+      console.log('ewrr in ' + err);
+    });
+
+  }
 
 }
